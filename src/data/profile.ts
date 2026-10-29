@@ -15,8 +15,8 @@ export const profile = {
     '[Texas Tech University](https://www.depts.ttu.edu/nrm/)',
     'B.URP, Khulna University of Engineering & Technology',
   ],
-  location: 'Khulna, Bangladesh',
-  locationLink: 'https://www.google.com/maps/place/Khulna,+Bangladesh',
+  location: 'Lubbock, Texas',
+  locationLink: 'https://www.google.com/maps/place/Lubbock,+TX',
   // Cycled by the typing effect in the header.
   keywords: ['UAV Remote Sensing', 'Urban Ecology', 'InSAR', 'Land Subsidence', 'GeoAI', 'Climate Hazards', 'Remote Sensing & GIS'],
 
