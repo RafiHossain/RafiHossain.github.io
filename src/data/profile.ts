@@ -30,7 +30,7 @@ export const profile = {
     researchGate: 'https://www.researchgate.net/profile/Al-Rafi-5',
     linkedin: 'https://www.linkedin.com/in/rafi-hossain-a39398244',
     github: 'https://github.com/RafiHossain',
-    orcid: '', // e.g. 'https://orcid.org/0000-0000-0000-0000'
+    orcid: 'https://orcid.org/0009-0004-0123-0163',
   },
 
   // Put your CV at public/cv/Al_Hossain_Rafi_CV.pdf (same file name) and it is
