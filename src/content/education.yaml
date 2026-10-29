@@ -1,0 +1,29 @@
+# ---------------------------------------------------------------------------
+# Education (listed in the order written here)
+#   degree, institution, location, period   required
+#   details   optional list of short lines (thesis, CGPA, honours, ...)
+# ---------------------------------------------------------------------------
+
+- id: burp
+  degree: Bachelor of Urban and Regional Planning (B.URP)
+  institution: Khulna University of Engineering & Technology (KUET)
+  location: Khulna, Bangladesh
+  period: Jan 2020 – Feb 2025
+  details:
+    - "Thesis: Optimized geohazard monitoring — a DInSAR, InSAR and explainable machine learning approach for land subsidence quantification in the deltaic metropolis of Bangladesh."
+
+- id: hsc
+  degree: Higher Secondary Certificate (HSC)
+  institution: Feni Government College
+  location: Feni, Bangladesh
+  period: Jun 2017 – Jun 2019
+  details:
+    - Cumilla Board
+
+- id: ssc
+  degree: Secondary School Certificate (SSC)
+  institution: Shaheen Academy School & College
+  location: Feni, Bangladesh
+  period: Jan 2007 – Jan 2017
+  details:
+    - Cumilla Board

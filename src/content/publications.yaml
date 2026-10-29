@@ -1,0 +1,196 @@
+# ---------------------------------------------------------------------------
+# Publications
+#
+# Add a new entry by copying one block. Fields:
+#   id        unique short name (letters, numbers, dashes)
+#   title     paper title
+#   authors   one line, authors separated by semicolons, e.g.
+#             "Haydar, M.; Rafi, A. H.; Sadia, H."
+#             Your own name is bolded automatically when it matches "Rafi, A. H."
+#   year      publication year (leave out for submitted work)
+#   venue     journal, conference or institution
+#   volume, issue, pages   optional
+#   doi       DOI only, without https://doi.org/  (optional)
+#   url       other link if there is no DOI (optional)
+#   pdf       path under public/, e.g. /papers/my-paper.pdf (optional)
+#   type      journal | conference | thesis
+#   status    published | accepted | under-review | submitted | in-preparation
+#   selected  true to show on the home page
+# ---------------------------------------------------------------------------
+
+# ---------- Published journal articles (metadata checked against Crossref) ----------
+
+- id: spring-water-potential-2026
+  title: Natural spring-based water potential in Bangladesh using ensemble machine learning algorithms
+  authors: "Hosan, S.; Haydar, M.; Rafi, A. H.; Rokim, M."
+  year: 2026
+  venue: Journal of Water and Climate Change
+  volume: "17"
+  issue: "2"
+  pages: 213–244
+  doi: 10.2166/wcc.2026.210
+  type: journal
+  status: published
+  selected: true
+
+- id: dhaka-urban-expansion-2026
+  title: Mapping urban expansion and land transformation in Dhaka, Bangladesh by fusing night-time lights, thermal, and spectral data via machine learning approaches
+  authors: "Sarkar, A.; Haydar, M.; Mitu, F. I.; Rafi, A. H.; Hosan, S."
+  year: 2026
+  venue: City and Environment Interactions
+  volume: "32"
+  pages: "100472"
+  doi: 10.1016/j.cacint.2026.100472
+  type: journal
+  status: published
+  selected: false
+
+- id: coastal-erosion-2025
+  title: Predicting coastal erosion susceptibility in Bangladesh under climate scenario via machine learning techniques
+  authors: "Hosan, S.; Pranta, S. D.; Tahmid, T.; Haydar, M.; Rafi, A. H."
+  year: 2025
+  venue: PLOS ONE
+  volume: "20"
+  issue: "11"
+  pages: e0334347
+  doi: 10.1371/journal.pone.0334347
+  type: journal
+  status: published
+  selected: true
+
+- id: crop-production-2025
+  title: Machine learning integrated approach for modeling crop production in Bangladesh
+  authors: "Faisal, W.; Sarkar, S. K.; Huq, K. T.; Al Noor, T.; Rafi, A. H."
+  year: 2025
+  venue: Smart Agricultural Technology
+  volume: "12"
+  pages: "101403"
+  doi: 10.1016/j.atech.2025.101403
+  type: journal
+  status: published
+  selected: false
+
+- id: forest-fire-climate-2025
+  title: Mapping climate change induced forest fire susceptibility using tree-based machine learning algorithms in Bangladesh
+  authors: "Haydar, M.; Rafi, A. H.; Khan, M. K. H.; Hosan, S.; Sadia, H."
+  year: 2025
+  venue: Ecological Indicators
+  volume: "176"
+  pages: "113657"
+  doi: 10.1016/j.ecolind.2025.113657
+  type: journal
+  status: published
+  selected: true
+
+- id: urban-expansion-jum-2025
+  title: Assessment of urban expansion susceptibility in major urban units of Bangladesh leveraging machine learning and geostatistical approach
+  authors: "Haydar, M.; Hosan, S.; Rafi, A. H."
+  year: 2025
+  venue: Journal of Urban Management
+  volume: "14"
+  pages: 451–467
+  doi: 10.1016/j.jum.2024.11.011
+  type: journal
+  status: published
+  selected: true
+
+- id: forest-fire-2024
+  title: Data driven forest fire susceptibility mapping in Bangladesh
+  authors: "Haydar, M.; Rafi, A. H.; Sadia, H.; Hossain, M. T."
+  year: 2024
+  venue: Ecological Indicators
+  volume: "166"
+  pages: "112264"
+  doi: 10.1016/j.ecolind.2024.112264
+  type: journal
+  status: published
+  selected: true
+
+# ---------- Conference papers ----------
+
+- id: iccesd-deforestation-2024
+  title: Carbon consequences of deforestation in Khagrachhari of Chittagong Hill Tracts — A GIS and remote sensing approach
+  authors: "Rahman, M.; Haque, T.; Rakhi, T. J.; Rafi, A. H.; Oishi, S. I."
+  year: 2024
+  venue: 7th International Conference on Civil Engineering for Sustainable Development (ICCESD 2024), KUET, Khulna, Bangladesh
+  type: conference
+  status: published
+  selected: false
+
+- id: iccesd-resource-management-2024
+  title: Factors affecting sustainable resource management in Bangladesh
+  authors: "Rimi, R. A.; Rafi, A. H.; J. S."
+  year: 2024
+  venue: 7th International Conference on Civil Engineering for Sustainable Development (ICCESD 2024), KUET, Khulna, Bangladesh
+  type: conference
+  status: published
+  selected: false
+
+# ---------- Submitted / under review (as listed on the previous portfolio) ----------
+# Update the status and add authors/DOI when a decision arrives.
+
+- id: sub-insar-xai-subsidence
+  title: Coupling InSAR and explainable machine learning to assess land subsidence in a deltaic metropolitan of Bangladesh
+  venue: Applied Computing and Geosciences
+  type: journal
+  status: submitted
+- id: sub-dinsar-subsidence
+  title: Optimized quantification of land subsidence using DInSAR and InSAR techniques in deltaic metropolitan of Bangladesh
+  venue: "Remote Sensing Applications: Society and Environment"
+  type: journal
+  status: submitted
+- id: sub-thunderstorm
+  title: Predictive modelling of thunderstorm sensitivity in Bangladesh
+  venue: Urban Climate
+  type: journal
+  status: submitted
+- id: sub-drought-sar
+  title: Assessing drought dynamics in semi-arid urban settings of Bangladesh using Sentinel-1 SAR imagery and radiometric indices
+  venue: Heliyon
+  type: journal
+  status: submitted
+- id: sub-coastal-flood
+  title: Revealing coastal flood susceptibility via machine learning in Bangladesh
+  venue: Environmental Monitoring and Assessment
+  type: journal
+  status: submitted
+- id: sub-drought-climate
+  title: Machine learning based spatial prediction of drought susceptibility in Bangladesh under climate change scenario
+  venue: Physics and Chemistry of the Earth
+  type: journal
+  status: submitted
+- id: sub-soil-erosion
+  title: Investigating the impact of soil erosion on ecosystem services in Bangladesh
+  venue: Soil & Tillage Research
+  type: journal
+  status: submitted
+- id: sub-urban-functional-zones
+  title: Application of graph clustering and neural networks for mapping urban functional zones within a rapid urbanization region in Bangladesh
+  venue: Journal of Urban Management
+  type: journal
+  status: submitted
+- id: sub-diabetes-xai
+  title: "Advancing diabetes prediction: Explainable artificial intelligence (XAI) for enhanced clinical insights"
+  venue: IEEE (venue to be confirmed)
+  type: conference
+  status: submitted
+- id: sub-wet-bulb
+  title: A hybrid artificial neural network–random forest model for enhanced wet bulb temperature prediction in arid urban environments
+  venue: Scientific Reports
+  type: journal
+  status: submitted
+- id: sub-flood-backscatter
+  title: Optimized mapping of flood dynamics using backscatter analysis and machine learning in Bangladesh
+  venue: Heliyon
+  type: journal
+  status: submitted
+
+# ---------- Thesis ----------
+
+- id: thesis-burp
+  title: "Optimized geohazard monitoring: A DInSAR, InSAR, and explainable machine learning approach for land subsidence quantification in the deltaic metropolis of Bangladesh"
+  authors: "Rafi, A. H."
+  venue: Undergraduate thesis, Department of Urban and Regional Planning, Khulna University of Engineering & Technology
+  type: thesis
+  status: published
+  selected: false

@@ -1,0 +1,21 @@
+---
+import { formatMonth, getNews, inlineMarkdown } from '../lib/content';
+
+interface Props {
+  limit?: number;
+}
+const { limit } = Astro.props;
+const all = await getNews();
+const items = limit ? all.slice(0, limit) : all;
+---
+
+<ul class="space-y-2.5">
+  {items.map((n) => (
+    <li class="grid grid-cols-[5.5rem_1fr] gap-3 text-[0.97rem]">
+      <time datetime={n.data.date.toISOString().slice(0, 10)} class="pt-px text-sm tabular-nums text-faint">
+        {formatMonth(n.data.date)}
+      </time>
+      <span set:html={inlineMarkdown(n.data.text)} />
+    </li>
+  ))}
+</ul>

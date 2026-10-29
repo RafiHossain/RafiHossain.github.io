@@ -1,0 +1,54 @@
+---
+import { SELF_AUTHOR, statusLabel, type Publication } from '../lib/content';
+
+interface Props {
+  pub: Publication;
+}
+const { data } = Astro.props.pub;
+const authors = data.authors ? data.authors.split(';').map((a) => a.trim()).filter(Boolean) : [];
+
+const detail = [data.volume && (data.issue ? `${data.volume}(${data.issue})` : data.volume), data.pages]
+  .filter(Boolean)
+  .join(', ');
+
+const statusClass: Record<string, string> = {
+  published: 'bg-navy-soft text-navy',
+  accepted: 'bg-emerald-50 text-emerald-800',
+  'under-review': 'bg-amber-50 text-amber-800',
+  submitted: 'bg-amber-50 text-amber-800',
+  'in-preparation': 'bg-tint text-muted',
+};
+---
+
+<li class="leading-relaxed">
+  <p>
+    {authors.length > 0 && (
+      <span>
+        {authors.map((a, i) => (
+          <>
+            {a === SELF_AUTHOR ? <strong class="font-semibold text-ink">{a}</strong> : <span>{a}</span>}
+            {i < authors.length - 2 ? ', ' : i === authors.length - 2 ? ', & ' : ''}
+          </>
+        ))}
+        {data.year ? ` (${data.year}). ` : '. '}
+      </span>
+    )}
+    <span class="text-ink">{data.title}.</span>
+    {' '}
+    {data.status === 'published' || data.status === 'accepted' ? (
+      <span><em>{data.venue}</em>{detail ? `, ${detail}.` : '.'}</span>
+    ) : (
+      <span class="text-muted">Submitted to <em>{data.venue}</em>.</span>
+    )}
+  </p>
+  <p class="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+    {data.status !== 'published' && <span class:list={['badge', statusClass[data.status]]}>{statusLabel[data.status]}</span>}
+    {data.doi && (
+      <a href={`https://doi.org/${data.doi}`} aria-label={`DOI for ${data.title}`}>
+        doi:{data.doi}
+      </a>
+    )}
+    {data.url && <a href={data.url}>Link</a>}
+    {data.pdf && <a href={data.pdf}>PDF</a>}
+  </p>
+</li>

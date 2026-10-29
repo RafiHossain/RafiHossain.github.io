@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import { profile } from '../data/profile';
+import { cvAvailable } from '../lib/content';
+
+interface Props {
+  layout?: 'stack' | 'inline';
+}
+const { layout = 'stack' } = Astro.props;
+
+type IconName = 'email' | 'scholar' | 'researchgate' | 'linkedin' | 'github' | 'orcid' | 'cv';
+const items: { href: string; label: string; icon: IconName }[] = [
+  { href: `mailto:${profile.emails[0]}`, label: 'Email', icon: 'email' },
+  { href: profile.links.googleScholar, label: 'Google Scholar', icon: 'scholar' },
+  { href: profile.links.researchGate, label: 'ResearchGate', icon: 'researchgate' },
+  { href: profile.links.orcid, label: 'ORCID', icon: 'orcid' },
+  { href: profile.links.linkedin, label: 'LinkedIn', icon: 'linkedin' },
+  { href: profile.links.github, label: 'GitHub', icon: 'github' },
+  { href: cvAvailable() ? profile.cvFile : '', label: 'CV (PDF)', icon: 'cv' },
+].filter((i): i is { href: string; label: string; icon: IconName } => Boolean(i.href));
+---
+
+<ul class:list={[layout === 'stack' ? 'space-y-1.5' : 'flex flex-wrap gap-x-4 gap-y-1.5', 'text-sm']}>
+  {items.map((i) => (
+    <li>
+      <a href={i.href} class="link-quiet inline-flex items-center gap-2" rel={i.href.startsWith('http') ? 'me noopener' : undefined}>
+        <Icon name={i.icon} />
+        <span>{i.label}</span>
+      </a>
+    </li>
+  ))}
+</ul>

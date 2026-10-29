@@ -1,0 +1,30 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactLinks from '../components/ContactLinks.astro';
+import { profile } from '../data/profile';
+---
+
+<PageLayout
+  title="Contact"
+  description="Contact Al Hossain Rafi about graduate research positions and collaboration."
+  lead="I welcome enquiries from prospective supervisors and collaborators working on geohazards, remote sensing, climate and environmental planning."
+>
+  <section aria-labelledby="email">
+    <h2 id="email" class="section-title">Email</h2>
+    <ul class="space-y-1">
+      {profile.emails.map((e, i) => (
+        <li>
+          <a href={`mailto:${e}`}>{e}</a>
+          {i === 0 && <span class="text-sm text-faint"> (preferred)</span>}
+        </li>
+      ))}
+    </ul>
+    {profile.phone.show && <p class="mt-3">Phone: {profile.phone.value}</p>}
+    {profile.address.show && <p class="mt-1">Address: {profile.address.value}</p>}
+  </section>
+
+  <section aria-labelledby="profiles">
+    <h2 id="profiles" class="section-title">Academic Profiles</h2>
+    <ContactLinks />
+  </section>
+</PageLayout>

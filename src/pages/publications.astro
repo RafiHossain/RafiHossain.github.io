@@ -1,0 +1,43 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import PublicationItem from '../components/PublicationItem.astro';
+import { profile } from '../data/profile';
+import { getPublications } from '../lib/content';
+
+const pubs = await getPublications();
+const groups = [
+  { id: 'journal', title: 'Journal Articles', items: pubs.filter((p) => p.data.type === 'journal' && ['published', 'accepted'].includes(p.data.status)) },
+  { id: 'conference', title: 'Conference Papers', items: pubs.filter((p) => p.data.type === 'conference' && ['published', 'accepted'].includes(p.data.status)) },
+  {
+    id: 'submitted',
+    title: 'Submitted and Under Review',
+    note: 'Manuscripts submitted for peer review. Titles may change before publication.',
+    items: pubs.filter((p) => ['submitted', 'under-review', 'in-preparation'].includes(p.data.status)),
+  },
+  { id: 'thesis', title: 'Thesis', items: pubs.filter((p) => p.data.type === 'thesis') },
+].filter((g) => g.items.length > 0);
+---
+
+<PageLayout
+  title="Publications"
+  description="Peer-reviewed journal articles, conference papers and submitted manuscripts by Al Hossain Rafi."
+>
+  <p class="text-muted">
+    My name is shown in <strong class="text-ink">bold</strong>. For citation counts, see
+    <a href={profile.links.googleScholar}>Google Scholar</a>{profile.links.researchGate && <> or <a href={profile.links.researchGate}>ResearchGate</a></>}.
+  </p>
+  <nav aria-label="Publication types" class="text-sm">
+    <ul class="flex flex-wrap gap-x-4 gap-y-1">
+      {groups.map((g) => <li><a href={`#${g.id}`}>{g.title} ({g.items.length})</a></li>)}
+    </ul>
+  </nav>
+  {groups.map((g) => (
+    <section aria-labelledby={g.id}>
+      <h2 id={g.id} class="section-title">{g.title}</h2>
+      {g.note && <p class="-mt-2 mb-4 text-sm text-muted">{g.note}</p>}
+      <ol class="space-y-4">
+        {g.items.map((p) => <PublicationItem pub={p} />)}
+      </ol>
+    </section>
+  ))}
+</PageLayout>

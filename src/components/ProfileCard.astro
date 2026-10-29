@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './Icon.astro';
+import ContactLinks from './ContactLinks.astro';
+import { profile } from '../data/profile';
+
+// Drop a photo named profile.jpg / profile.png / profile.webp into src/assets/
+// and it is picked up and optimized automatically. Without one, initials are shown.
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/profile.{jpg,jpeg,png,webp}', { eager: true });
+const photo = Object.values(photos)[0]?.default;
+const initials = profile.name
+  .split(' ')
+  .map((w) => w[0])
+  .join('');
+---
+
+<div class="flex flex-row items-start gap-5 md:flex-col md:items-stretch md:gap-0">
+  {photo ? (
+    <Image
+      src={photo}
+      alt={`Portrait of ${profile.name}`}
+      widths={[160, 320, 480]}
+      sizes="(min-width: 768px) 200px, 112px"
+      class="h-28 w-28 shrink-0 rounded-full object-cover object-top md:h-auto md:w-full md:max-w-[200px] md:aspect-square"
+      loading="eager"
+    />
+  ) : (
+    <div
+      class="flex h-28 w-28 shrink-0 items-center justify-center rounded-full bg-navy-soft font-serif text-3xl text-navy md:h-[200px] md:w-[200px] md:text-5xl"
+      role="img"
+      aria-label={`${profile.name} (photo not yet added)`}
+    >
+      {initials}
+    </div>
+  )}
+
+  <div class="md:mt-5">
+    <p class="font-serif text-2xl font-semibold leading-tight text-ink">{profile.name}</p>
+    <p class="mt-1 text-sm text-muted">{profile.designation}</p>
+    <p class="mt-1 text-sm text-muted">{profile.affiliation}</p>
+    <p class="mt-1 inline-flex items-center gap-1.5 text-sm text-faint">
+      <Icon name="location" class="h-3.5 w-3.5" />
+      {profile.location}
+    </p>
+    <div class="mt-4 hidden md:block">
+      <ContactLinks />
+    </div>
+  </div>
+</div>
+<div class="mt-4 md:hidden">
+  <ContactLinks layout="inline" />
+</div>

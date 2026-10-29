@@ -1,0 +1,70 @@
+# ---------------------------------------------------------------------------
+# Experience, training and leadership
+#   category  research | professional | training | leadership
+#   role, organization, period   (period may be left empty if unknown)
+#   summary   one short paragraph
+# Items appear in the order written here, grouped by category.
+# ---------------------------------------------------------------------------
+
+- id: geospatial-matrix
+  category: research
+  role: Research Assistant
+  organization: Geospatial Matrix
+  period: Present
+  summary: Research on GIS and remote sensing, machine learning, climate hazards and environmental change in Bangladesh, leading to several co-authored journal articles.
+
+- id: cer
+  category: research
+  role: Research Assistant
+  organization: Center for Environmental Research (CER)
+  period: Mar 2022 – Present
+  summary: Contributed to research projects on pollution impacts, transportation planning, traffic safety and public health.
+
+- id: kcc
+  category: professional
+  role: Intern (GIS)
+  organization: Khulna City Corporation (KCC)
+  period: Oct 2024
+  summary: Worked as a GIS expert on a road construction project in Khulna city, applying spatial analysis to planning and implementation; built a spatial vegetation database and studied the effects of vegetation across several KCC projects.
+
+- id: field-surveys
+  category: research
+  role: Field surveys and data collection
+  organization: Academic and project work, KUET
+  period: 2020 – 2025
+  summary: Questionnaire, participatory and focus-group surveys on environmental studies, urban planning, rural development, public health, coastal problems, noise pollution and informal settlements.
+
+- id: uav-training
+  category: training
+  role: Fundamentals of UAV Data Collection and Aerial Image Processing
+  organization: URP Association, KUET — instructed by Project Research Consultancy (PRC)
+  period: ""
+  summary: Hands-on training in drone-based data collection and aerial image processing.
+
+- id: iccesd
+  category: training
+  role: Participant and co-author
+  organization: 7th International Conference on Civil Engineering for Sustainable Development (ICCESD 2024), KUET
+  period: Feb 2024
+  summary: Presented two co-authored papers and attended sessions on environmental engineering, transportation, climate change and geospatial data science.
+
+- id: bip
+  category: leadership
+  role: Volunteer
+  organization: Bangladesh Institute of Planners (BIP)
+  period: 2023 – 2024
+  summary: Took part in seminars, workshops and discussions on advancing planning knowledge and professional standards in Bangladesh.
+
+- id: kfs
+  category: leadership
+  role: General Secretary
+  organization: KUET Film Society
+  period: ""
+  summary: Helped manage film screenings, discussions and workshops promoting film as a cultural and educational medium.
+
+- id: urpa
+  category: leadership
+  role: Sports Secretary
+  organization: URP Association, KUET
+  period: 2022 – 2023
+  summary: Organized and directed the department's inter-batch football tournament in 2022.

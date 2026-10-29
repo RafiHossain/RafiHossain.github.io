@@ -1,0 +1,42 @@
+---
+import { profile } from '../data/profile';
+
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/research/', label: 'Research' },
+  { href: '/publications/', label: 'Publications' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/experience/', label: 'Experience' },
+  { href: '/cv/', label: 'CV' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const current = Astro.url.pathname.replace(/\/?$/, '/');
+const isActive = (href: string) => (href === '/' ? current === '/' : current.startsWith(href));
+---
+
+<header class="border-b border-rule bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/85 md:sticky md:top-0 z-10">
+  <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-6">
+    <a href="/" class="font-serif text-lg font-semibold tracking-wide text-ink no-underline hover:text-navy">
+      {profile.name}
+    </a>
+    <nav aria-label="Main">
+      <ul class="-mx-2 flex flex-wrap gap-x-1 gap-y-0.5 text-[0.93rem]">
+        {nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              class:list={[
+                'block rounded px-2 py-1 no-underline',
+                isActive(item.href) ? 'text-navy font-semibold' : 'text-muted hover:text-navy hover:bg-navy-soft/60',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>

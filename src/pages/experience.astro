@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import ExperienceList from '../components/ExperienceList.astro';
+import EducationList from '../components/EducationList.astro';
+
+const all = await getCollection('experience');
+const groups = [
+  { id: 'research', title: 'Research Experience' },
+  { id: 'professional', title: 'Professional Experience' },
+  { id: 'training', title: 'Training and Conferences' },
+  { id: 'leadership', title: 'Leadership and Service' },
+]
+  .map((g) => ({ ...g, items: all.filter((x) => x.data.category === g.id) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<PageLayout
+  title="Experience"
+  description="Education, research experience, internships, training and leadership of Al Hossain Rafi."
+>
+  <section aria-labelledby="education">
+    <h2 id="education" class="section-title">Education</h2>
+    <EducationList />
+  </section>
+  {groups.map((g) => (
+    <section aria-labelledby={g.id}>
+      <h2 id={g.id} class="section-title">{g.title}</h2>
+      <ExperienceList items={g.items} />
+    </section>
+  ))}
+</PageLayout>
