@@ -6,6 +6,11 @@
 
 export const themes = [
   {
+    title: 'UAV-based species detection and urban development (M.S. research, from Spring 2027)',
+    text: 'At Texas Tech University, under Dr. A. H. M. Ali Reza, I will use UAV imagery and geospatial modeling to detect species in Texas and assess how urban development affects them.',
+    publications: [],
+  },
+  {
     title: 'Land subsidence and InSAR',
     text: 'Measuring ground deformation in the deltaic city of Khulna with DInSAR and InSAR time series, and explaining its drivers and spatial susceptibility with interpretable machine learning. This was the focus of my undergraduate thesis.',
     publications: ['thesis-burp', 'sub-insar-xai-subsidence', 'sub-dinsar-subsidence'],

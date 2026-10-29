@@ -21,7 +21,7 @@ All content lives in plain text files. You never need to touch the page layouts 
 | Education | `src/content/education.yaml` |
 | Experience, training, leadership | `src/content/experience.yaml` |
 | Profile photo | `src/assets/profile.jpg` |
-| CV (PDF) | `public/cv/Al_Hossain_Rafi_CV.pdf` |
+| CV (PDF, optional) | `public/cv/Al_Hossain_Rafi_CV.pdf` |
 
 You can edit any of these directly on GitHub: open the file, click the pencil icon, and commit. The site rebuilds in about a minute.
 
@@ -88,9 +88,9 @@ Optional longer description in Markdown.
 
 Save a square-ish portrait as `src/assets/profile.jpg` (or `.png` / `.webp`). It is resized and optimized automatically. Without a photo, the site shows your initials.
 
-### Upload your CV
+### Upload a CV (optional)
 
-Save the PDF as `public/cv/Al_Hossain_Rafi_CV.pdf`. Download links then appear on the CV page, the sidebar and the contact page. They stay hidden while the file is missing, so there are never broken links.
+The site currently has no CV. To add one, save the PDF as `public/cv/Al_Hossain_Rafi_CV.pdf`. A "CV (PDF)" link then appears under your photo and on the contact page. The link stays hidden while the file is missing, so there are never broken links.
 
 ### Contact links
 
@@ -129,7 +129,7 @@ src/
   assets/           profile photo
   components/       reusable pieces (publication entry, project entry, ...)
   layouts/          page shells
-  pages/            one file per page: index, research, publications, projects, experience, cv, contact
+  pages/            one file per page: index, research, publications, projects, experience, contact
   styles/global.css colors, fonts and base styles
 public/             files copied as-is (favicon, robots.txt, cv/, papers/)
 ```

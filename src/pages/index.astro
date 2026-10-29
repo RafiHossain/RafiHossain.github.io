@@ -76,7 +76,7 @@ const experience = (await getCollection('experience')).filter((x) => x.data.cate
 
       <section aria-labelledby="education">
         <h2 id="education" class="section-title">Education</h2>
-        <EducationList limit={1} />
+        <EducationList limit={2} />
       </section>
 
       <section aria-labelledby="experience">
@@ -88,7 +88,7 @@ const experience = (await getCollection('experience')).filter((x) => x.data.cate
       <section aria-labelledby="contact">
         <h2 id="contact" class="section-title">Contact</h2>
         <p class="mb-3">
-          I welcome enquiries about graduate research positions and collaboration. The best way to reach me is by email at
+          I welcome enquiries about research and collaboration. The best way to reach me is by email at
           <a href={`mailto:${profile.emails[0]}`}>{profile.emails[0]}</a>.
         </p>
         <ContactLinks layout="inline" />

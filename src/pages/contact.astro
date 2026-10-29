@@ -6,8 +6,8 @@ import { profile } from '../data/profile';
 
 <PageLayout
   title="Contact"
-  description="Contact Al Hossain Rafi about graduate research positions and collaboration."
-  lead="I welcome enquiries from prospective supervisors and collaborators working on geohazards, remote sensing, climate and environmental planning."
+  description="Contact Al Hossain Rafi about research and collaboration."
+  lead="I welcome enquiries from researchers and collaborators working on UAV and satellite remote sensing, urban ecology, geohazards, climate and environmental planning."
 >
   <section aria-labelledby="email">
     <h2 id="email" class="section-title">Email</h2>
@@ -15,7 +15,7 @@ import { profile } from '../data/profile';
       {profile.emails.map((e, i) => (
         <li>
           <a href={`mailto:${e}`}>{e}</a>
-          {i === 0 && <span class="text-sm text-faint"> (preferred)</span>}
+          {i === 0 && profile.emails.length > 1 && <span class="text-sm text-faint"> (preferred)</span>}
         </li>
       ))}
     </ul>

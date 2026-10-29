@@ -4,6 +4,15 @@
 #   details   optional list of short lines (thesis, CGPA, honours, ...)
 # ---------------------------------------------------------------------------
 
+- id: ttu-ms
+  degree: M.S. in Environmental Biology (incoming)
+  institution: Department of Natural Resources Management, Texas Tech University
+  location: Lubbock, Texas, USA
+  period: Spring 2027 –
+  details:
+    - "Advisor: Dr. A. H. M. Ali Reza, Associate Professor of Practice"
+    - "Graduate Research Assistant. Research focus: UAV-based geospatial modeling to detect species in Texas and assess the effects of urban development on them."
+
 - id: burp
   degree: Bachelor of Urban and Regional Planning (B.URP)
   institution: Khulna University of Engineering & Technology (KUET)

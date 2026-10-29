@@ -6,6 +6,13 @@
 # Items appear in the order written here, grouped by category.
 # ---------------------------------------------------------------------------
 
+- id: ttu-gra
+  category: research
+  role: Graduate Research Assistant (incoming)
+  organization: Department of Natural Resources Management, Texas Tech University
+  period: From Spring 2027
+  summary: UAV-based geospatial modeling to detect species in Texas and examine how urban development affects them, under Dr. A. H. M. Ali Reza.
+
 - id: plancon
   category: research
   role: Research Associate
