@@ -1,0 +1,30 @@
+---
+// A research entry: bold title and description on the left, role and period on the right.
+import { inlineMarkdown } from '../lib/content';
+
+interface Props {
+  title: string;
+  /** Markdown */
+  description?: string;
+  role?: string;
+  period?: string;
+}
+const { title, description, role, period } = Astro.props;
+---
+
+<div class="cell item-row">
+  <div>
+    <p class="condensed"><strong>{title}</strong></p>
+    {description && <p class="condensed" set:html={inlineMarkdown(description)} />}
+    <slot />
+  </div>
+  <div>
+    {(role || period) && (
+      <p class="dates">
+        {role && <span class="role">{role}</span>}
+        {role && period && <br />}
+        {period}
+      </p>
+    )}
+  </div>
+</div>

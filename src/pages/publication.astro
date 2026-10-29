@@ -1,0 +1,51 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Citation from '../components/Citation.astro';
+import { profile } from '../data/profile';
+import { getPublications, statusLabel, venueInitials } from '../lib/content';
+
+const pubs = await getPublications();
+const isOut = (s: string) => s === 'published' || s === 'accepted';
+const groups = [
+  { id: 'journal', title: 'Journal Articles', items: pubs.filter((p) => p.data.type === 'journal' && isOut(p.data.status)) },
+  { id: 'conference', title: 'Conference Papers', items: pubs.filter((p) => p.data.type === 'conference' && isOut(p.data.status)) },
+  { id: 'thesis', title: 'Thesis', items: pubs.filter((p) => p.data.type === 'thesis') },
+  {
+    id: 'submitted',
+    title: 'Submitted and In Preparation',
+    items: pubs.filter((p) => !isOut(p.data.status) && p.data.type !== 'thesis'),
+  },
+].filter((g) => g.items.length > 0);
+---
+
+<PageLayout title="Publication" icon="book" description="Peer-reviewed journal articles, conference papers and submitted manuscripts by Al Hossain Rafi.">
+  <p class="note" style="text-align:center">
+    * Full publication list and citations are on <a href={profile.links.googleScholar}>Google Scholar</a>.
+  </p>
+
+  {groups.map((g) => (
+    <section class="section" aria-labelledby={g.id}>
+      <h2 class="section-title" id={g.id}>{g.title}</h2>
+      {g.id === 'submitted' ? (
+        g.items.map((p) => <div class="cell"><Citation pub={p} /></div>)
+      ) : (
+        g.items.map((p) => (
+          <div class="pub-row">
+            <div>
+              <p class="pub-venue"><span class="venue-badge" aria-hidden="true">{venueInitials(p.data.venue)}</span></p>
+              <p class="pub-venue">
+                <strong>{p.data.venue.split(',')[0]}</strong>
+                <br />
+                {p.data.volume ? `Volume ${p.data.volume}, ` : ''}{p.data.year}
+                {p.data.status !== 'published' && <><br />{statusLabel[p.data.status]}</>}
+              </p>
+            </div>
+            <div>
+              <Citation pub={p} />
+            </div>
+          </div>
+        ))
+      )}
+    </section>
+  ))}
+</PageLayout>

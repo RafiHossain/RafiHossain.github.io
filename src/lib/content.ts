@@ -39,6 +39,25 @@ export function formatMonth(d: Date) {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', timeZone: 'UTC' });
 }
 
+/** News dates as M/D/YYYY; a date on the 1st is treated as month-only and shown as M/YYYY. */
+export function newsDate(d: Date) {
+  const m = d.getUTCMonth() + 1;
+  const y = d.getUTCFullYear();
+  return d.getUTCDate() === 1 ? `${m}/${y}` : `${m}/${d.getUTCDate()}/${y}`;
+}
+
+/** Initials of a venue name for the publication badge, e.g. "Ecological Indicators" -> "EI". */
+export function venueInitials(venue: string) {
+  const skip = new Set(['of', 'and', 'the', 'for', 'on', 'in', '&']);
+  return venue
+    .replace(/\(.*?\)/g, '')
+    .split(/[\s:,-]+/)
+    .filter((w) => w && !skip.has(w.toLowerCase()) && /^[A-Za-z]/.test(w))
+    .map((w) => (w === w.toUpperCase() && w.length <= 5 ? w : w[0].toUpperCase()))
+    .join('')
+    .slice(0, 6);
+}
+
 /** Very small inline Markdown: [label](url), *italic*, **bold**. Input is trusted site content. */
 export function inlineMarkdown(text: string) {
   const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

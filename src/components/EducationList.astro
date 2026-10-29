@@ -2,28 +2,22 @@
 import { getCollection } from 'astro:content';
 
 interface Props {
-  limit?: number;
+  /** Show the detail lines (thesis, CGPA, courses). */
+  details?: boolean;
 }
-const { limit } = Astro.props;
-const all = await getCollection('education');
-const items = limit ? all.slice(0, limit) : all;
+const { details = true } = Astro.props;
+const items = await getCollection('education');
 ---
 
-<ul class="space-y-5">
-  {items.map((e) => (
-    <li>
-      <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-        <h3 class="text-base font-semibold">{e.data.degree}</h3>
-        <span class="shrink-0 text-sm tabular-nums text-faint">{e.data.period}</span>
-      </div>
-      <p class="text-muted">
-        {e.data.institution}{e.data.location && `, ${e.data.location}`}
-      </p>
-      {e.data.details.length > 0 && (
-        <ul class="mt-1 text-[0.95rem] text-muted">
-          {e.data.details.map((d) => <li>{d}</li>)}
-        </ul>
-      )}
-    </li>
-  ))}
-</ul>
+{items.map((e) => (
+  <div class="cell item-row wide">
+    <div>
+      <p class="condensed"><strong>{e.data.degree}</strong></p>
+      <p class="condensed"><em>{e.data.institution}{e.data.location && `, ${e.data.location}`}</em></p>
+      {details && e.data.details.map((d) => <p class="condensed muted">{d}</p>)}
+    </div>
+    <div>
+      <p class="dates">{e.data.period}</p>
+    </div>
+  </div>
+))}

@@ -1,0 +1,41 @@
+---
+// One publication as a single citation paragraph:
+// Authors, Year. Title. *Venue*, volume(issue), pages. doi: link.
+import { SELF_AUTHOR, statusLabel, type Publication } from '../lib/content';
+
+interface Props {
+  pub: Publication;
+  class?: string;
+}
+const { pub, class: cls } = Astro.props;
+const { data } = pub;
+const authors = data.authors ? data.authors.split(';').map((a) => a.trim()).filter(Boolean) : [];
+const detail = [data.volume && (data.issue ? `${data.volume}(${data.issue})` : data.volume), data.pages].filter(Boolean).join(', ');
+const published = data.status === 'published' || data.status === 'accepted';
+---
+
+<p class:list={['condensed', cls]}>
+  {authors.length > 0 && (
+    <>
+      {authors.map((a, i) => (
+        <>
+          {a === SELF_AUTHOR ? <strong>{a}</strong> : a}
+          {i < authors.length - 2 ? ', ' : i === authors.length - 2 ? ', and ' : ''}
+        </>
+      ))}
+      {data.year ? `, ${data.year}. ` : '. '}
+    </>
+  )}
+  {data.title}.{' '}
+  {published ? (
+    <><em>{data.venue}</em>{detail ? `, ${detail}.` : '.'}</>
+  ) : data.status === 'in-preparation' ? (
+    <>Manuscript in preparation.</>
+  ) : (
+    <>Submitted to <em>{data.venue}</em>.</>
+  )}
+  {data.doi && <> doi: <a href={`https://doi.org/${data.doi}`}>{data.doi}</a>.</>}
+  {!data.doi && data.url && <> <a href={data.url}>Link</a>.</>}
+  {data.pdf && <> <a href={data.pdf}>PDF</a>.</>}
+  {data.status !== 'published' && <span class="status">{statusLabel[data.status]}</span>}
+</p>

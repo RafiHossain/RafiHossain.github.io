@@ -8,6 +8,13 @@ export default defineConfig({
   site: 'https://rafihossain.github.io',
   trailingSlash: 'ignore',
   integrations: [sitemap()],
+  // Old page addresses from the first version of the site.
+  redirects: {
+    '/research': '/rnd/',
+    '/projects': '/rnd/',
+    '/publications': '/publication/',
+    '/cv': '/contact/',
+  },
   vite: {
     plugins: [tailwindcss()],
   },

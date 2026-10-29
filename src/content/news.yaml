@@ -3,49 +3,51 @@
 #
 # Newest items are shown first automatically (sorted by date).
 #   id     unique short name
-#   date   YYYY-MM-DD (use 01 for the day if you only know the month)
-#   text   one or two sentences; Markdown links work: [label](https://...)
+#   date   YYYY-MM-DD. Use 01 for the day if you only know the month: it is then
+#          shown as month/year (e.g. 2/2025) instead of an exact date.
+#   text   one or two sentences; Markdown links work: [label](https://...),
+#          and *text* makes italics. Wrap a linked title in * * to italicise it.
 # Only add things that actually happened.
 # Dates for papers below come from Crossref (online date where available,
-# otherwise the journal issue date).
+# otherwise the journal issue month).
 # ---------------------------------------------------------------------------
 
 - id: cei-2026
   date: 2026-09-11
-  text: "Paper on mapping urban expansion and land transformation in Dhaka using night-time lights, thermal and spectral data published in *City and Environment Interactions*. [DOI](https://doi.org/10.1016/j.cacint.2026.100472)"
+  text: "New paper *[Mapping urban expansion and land transformation in Dhaka, Bangladesh by fusing night-time lights, thermal, and spectral data via machine learning approaches](https://doi.org/10.1016/j.cacint.2026.100472)* is published in *City and Environment Interactions*"
 
 - id: jwcc-2026
   date: 2026-02-11
-  text: "Paper on natural spring-based water potential in Bangladesh using ensemble machine learning published in *Journal of Water and Climate Change*. [DOI](https://doi.org/10.2166/wcc.2026.210)"
+  text: "New paper *[Natural spring-based water potential in Bangladesh using ensemble machine learning algorithms](https://doi.org/10.2166/wcc.2026.210)* is published in *Journal of Water and Climate Change*"
 
 - id: atech-2025
   date: 2025-12-01
-  text: "Co-authored paper on machine learning for modeling crop production in Bangladesh published in *Smart Agricultural Technology*. [DOI](https://doi.org/10.1016/j.atech.2025.101403)"
+  text: "New paper *[Machine learning integrated approach for modeling crop production in Bangladesh](https://doi.org/10.1016/j.atech.2025.101403)* is published in *Smart Agricultural Technology*"
 
 - id: plos-2025
   date: 2025-11-05
-  text: "Paper on predicting coastal erosion susceptibility under climate scenarios published in *PLOS ONE*. [DOI](https://doi.org/10.1371/journal.pone.0334347)"
+  text: "New paper *[Predicting coastal erosion susceptibility in Bangladesh under climate scenario via machine learning techniques](https://doi.org/10.1371/journal.pone.0334347)* is published in *PLOS ONE*"
 
 - id: ecolind-2025
   date: 2025-07-01
-  text: "Paper on climate change induced forest fire susceptibility mapping with tree-based machine learning published in *Ecological Indicators*. [DOI](https://doi.org/10.1016/j.ecolind.2025.113657)"
+  text: "New paper *[Mapping climate change induced forest fire susceptibility using tree-based machine learning algorithms in Bangladesh](https://doi.org/10.1016/j.ecolind.2025.113657)* is published in *Ecological Indicators*"
 
 - id: jum-2025
   date: 2025-06-01
-  text: "Paper on urban expansion susceptibility in major urban units of Bangladesh published in *Journal of Urban Management*. [DOI](https://doi.org/10.1016/j.jum.2024.11.011)"
+  text: "New paper *[Assessment of urban expansion susceptibility in major urban units of Bangladesh leveraging machine learning and geostatistical approach](https://doi.org/10.1016/j.jum.2024.11.011)* is published in *Journal of Urban Management*"
 
 - id: burp-2025
   date: 2025-02-01
-  text: "Completed the Bachelor of Urban and Regional Planning (B.URP) at Khulna University of Engineering & Technology, with an undergraduate thesis on InSAR and explainable machine learning for land subsidence."
+  text: "Completed the Bachelor of Urban and Regional Planning (B.URP) at *Khulna University of Engineering & Technology* with the thesis *Optimized geohazard monitoring: A DInSAR, InSAR, and explainable machine learning approach for land subsidence quantification in the deltaic metropolis of Bangladesh*"
 
 - id: kcc-2024
   date: 2024-10-01
-  text: "Interned with Khulna City Corporation as a GIS expert on a city road construction project and built a spatial vegetation database."
+  text: "Joined *Khulna City Corporation* as a GIS intern on a city road construction project and built a spatial vegetation database"
 
 - id: ecolind-2024
   date: 2024-09-01
-  text: "First peer-reviewed journal article, on data-driven forest fire susceptibility mapping in Bangladesh, published in *Ecological Indicators*. [DOI](https://doi.org/10.1016/j.ecolind.2024.112264)"
+  text: "New paper *[Data driven forest fire susceptibility mapping in Bangladesh](https://doi.org/10.1016/j.ecolind.2024.112264)* is published in *Ecological Indicators*"
 
 - id: iccesd-2024
   date: 2024-02-07
-  text: "Presented two co-authored papers at the 7th International Conference on Civil Engineering for Sustainable Development (ICCESD 2024), KUET."
+  text: "Presented two co-authored papers at the *7th International Conference on Civil Engineering for Sustainable Development (ICCESD 2024)*, KUET"

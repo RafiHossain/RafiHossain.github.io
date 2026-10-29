@@ -2,7 +2,7 @@
 
 Academic research portfolio of **Al Hossain Rafi**, published at <https://rafihossain.github.io/>.
 
-Built with [Astro](https://astro.build) and Tailwind CSS. It is a static site with no backend or database. Every push to `main` is built and deployed automatically by GitHub Actions.
+Built with [Astro](https://astro.build) and plain CSS (Tailwind provides the base reset). It is a static site with no backend or database. Every push to `main` is built and deployed automatically by GitHub Actions.
 
 ---
 
@@ -12,9 +12,10 @@ All content lives in plain text files. You never need to touch the page layouts 
 
 | What | File |
 | --- | --- |
-| Name, designation, biography, keywords, emails, profile links | `src/data/profile.ts` |
-| Research interests and methods/tools list | `src/data/profile.ts` (`researchInterests`, `skills`) |
-| Research themes and collaborators (Research page) | `src/data/research.ts` |
+| Name, lines under the photo (`sidebar`), header keywords, emails, profile links | `src/data/profile.ts` |
+| Home biography: `bioIntro`, bulleted `researchAreas`, `bioOutro` | `src/data/profile.ts` |
+| Research interests and methods/tools (R&D page) | `src/data/profile.ts` (`researchInterests`, `skills`) |
+| Current research (home "Research" section and R&D page), research themes, collaborators | `src/data/research.ts` |
 | Publications | `src/content/publications.yaml` |
 | Research updates / news | `src/content/news.yaml` |
 | Projects (one file per project) | `src/content/projects/*.md` |
@@ -24,6 +25,8 @@ All content lives in plain text files. You never need to touch the page layouts 
 | CV (PDF, optional) | `public/cv/Al_Hossain_Rafi_CV.pdf` |
 
 You can edit any of these directly on GitHub: open the file, click the pencil icon, and commit. The site rebuilds in about a minute.
+
+Pages: Home (`/`), News (`/news/`), Publication (`/publication/`), R&D (`/rnd/`), Experience (`/experience/`) and Contact (`/contact/`). The site follows the visitor's light/dark system setting, and the moon/sun button in the footer switches it.
 
 ### Add a publication
 
@@ -46,7 +49,7 @@ Copy an existing block in `src/content/publications.yaml` and change the values:
 
 * Your name is bolded automatically when it is written exactly `Rafi, A. H.`.
 * When a submitted paper is accepted, change its `status`, then add `authors`, `year` and `doi`.
-* Publications are grouped automatically on the Publications page (journal, conference, submitted, thesis).
+* Publications are grouped automatically on the Publication page (journal, conference, thesis, submitted). Entries with `selected: true` appear under "Selected Publication" on the home page.
 
 ### Add a news item
 
@@ -55,10 +58,10 @@ Add a block at the top of `src/content/news.yaml`:
 ```yaml
 - id: award-2026
   date: 2026-11-15
-  text: "Received the XYZ award. [Details](https://example.org)"
+  text: "New paper *[Paper title](https://doi.org/...)* is published in *Journal Name*"
 ```
 
-Items are sorted by date. The newest six appear on the home page and the rest are kept in the file.
+Items are sorted by date. The newest five appear on the home page, and all of them appear on the News page grouped by year.
 
 ### Add a project
 
@@ -69,7 +72,7 @@ Create a new file in `src/content/projects/`, for example `my-project.md`:
 title: Project title
 category: research          # research (with code) | academic (coursework / field study)
 order: 4                    # lower numbers appear first
-featured: true              # show on the home page
+featured: true              # show in the home "Research" section (needs repo)
 summary: One or two sentences.
 problem: The research problem.
 methods:
@@ -90,7 +93,7 @@ Save a square-ish portrait as `src/assets/profile.jpg` (or `.png` / `.webp`). It
 
 ### Upload a CV (optional)
 
-The site currently has no CV. To add one, save the PDF as `public/cv/Al_Hossain_Rafi_CV.pdf`. A "CV (PDF)" link then appears under your photo and on the contact page. The link stays hidden while the file is missing, so there are never broken links.
+The site currently has no CV. To add one, save the PDF as `public/cv/Al_Hossain_Rafi_CV.pdf`. A "CV (PDF)" link then appears on the contact page. The link stays hidden while the file is missing, so there are never broken links.
 
 ### Contact links
 
@@ -127,11 +130,11 @@ src/
   content.config.ts schema that validates the content files
   data/             profile.ts and research.ts (edit these)
   assets/           profile photo
-  components/       reusable pieces (publication entry, project entry, ...)
+  components/       header, footer, citation, news list, research item, icons, logo
   layouts/          page shells
-  pages/            one file per page: index, research, publications, projects, experience, contact
-  styles/global.css colors, fonts and base styles
+  pages/            one file per page: index, news, publication, rnd, experience, contact
+  styles/global.css colors, fonts, layout and both themes
 public/             files copied as-is (favicon, robots.txt, cv/, papers/)
 ```
 
-The color palette is set in `src/styles/global.css` under `@theme`. Navy (`--color-navy`) is the single accent color.
+Colors are CSS variables at the top of `src/styles/global.css`: `:root` holds the light theme and `html[data-theme='dark']` the dark theme. Fonts (Barlow, Barlow Condensed, Inconsolata) load from Google Fonts in `src/layouts/BaseLayout.astro`. Old addresses (`/research/`, `/projects/`, `/publications/`, `/cv/`) redirect to the new pages; see `astro.config.mjs`.

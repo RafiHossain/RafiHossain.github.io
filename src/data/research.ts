@@ -4,12 +4,25 @@
 // shown under the theme automatically.
 // ---------------------------------------------------------------------------
 
-export const themes = [
+// Current and recent research shown in the "Research" section of the home page
+// and at the top of the R&D page. `description` accepts Markdown links.
+export const ongoing = [
   {
-    title: 'UAV-based species detection and urban development (M.S. research, from Spring 2027)',
-    text: 'At Texas Tech University, under Dr. A. H. M. Ali Reza, I will use UAV imagery and geospatial modeling to detect species in Texas and assess how urban development affects them.',
-    publications: [],
+    title: 'UAV-based geospatial modeling to detect species in Texas and assess the effects of urban development',
+    description: 'M.S. research, [Department of Natural Resources Management, Texas Tech University](https://www.depts.ttu.edu/nrm/) (Advisor: [Dr. A. H. M. Ali Reza](https://www.depts.ttu.edu/nrm/people/faculty/reza-ali/reza-ali.php))',
+    role: 'Graduate Research Assistant',
+    period: 'Spring 2027 – present',
   },
+  {
+    title: 'Optimized geohazard monitoring: A DInSAR, InSAR, and explainable machine learning approach for land subsidence quantification in the deltaic metropolis of Bangladesh',
+    description: 'Undergraduate thesis, Department of Urban and Regional Planning, KUET (Supervisor: Mafrid Haydar)',
+    role: 'B.URP Thesis',
+    period: '2025',
+  },
+];
+
+// Research themes on the R&D page; `publications` lists ids from publications.yaml.
+export const themes = [
   {
     title: 'Land subsidence and InSAR',
     text: 'Measuring ground deformation in the deltaic city of Khulna with DInSAR and InSAR time series, and explaining its drivers and spatial susceptibility with interpretable machine learning. This was the focus of my undergraduate thesis.',

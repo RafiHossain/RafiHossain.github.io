@@ -1,0 +1,101 @@
+---
+import { render } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import ResearchItem from '../components/ResearchItem.astro';
+import { researchInterests, skills } from '../data/profile';
+import { collaborators, ongoing, themes } from '../data/research';
+import { getProjects, getPublications } from '../lib/content';
+
+const pubs = await getPublications();
+const byId = new Map(pubs.map((p) => [p.id, p]));
+const projects = await getProjects();
+const rendered = await Promise.all(projects.map(async (p) => ({ p, Content: (await render(p)).Content })));
+const codeProjects = rendered.filter(({ p }) => p.data.category === 'research');
+const academic = rendered.filter(({ p }) => p.data.category === 'academic');
+---
+
+<PageLayout title="R&D" icon="flask" description="Research and development by Al Hossain Rafi: UAV species detection, InSAR land subsidence, climate hazard susceptibility modeling, urban growth and open-source research code.">
+  <section class="section" aria-labelledby="current">
+    <h2 class="section-title" id="current">Current Research</h2>
+    {ongoing.map((r) => <ResearchItem {...r} />)}
+  </section>
+
+  <section class="section" aria-labelledby="themes">
+    <h2 class="section-title" id="themes">Research Themes</h2>
+    {themes.map((t) => {
+      const related = t.publications.map((id) => byId.get(id)).filter((p) => p !== undefined);
+      return (
+        <div class="cell">
+          <p class="condensed"><strong>{t.title}</strong></p>
+          <p class="condensed">{t.text}</p>
+          {related.length > 0 && (
+            <ul>
+              {related.map((p) => (
+                <li>
+                  {p.data.doi ? <em><a href={`https://doi.org/${p.data.doi}`}>{p.data.title}</a></em> : <em>{p.data.title}</em>}
+                  {' '}
+                  <span class="muted">
+                    ({p.data.status === 'published' ? <>{p.data.venue.split(',')[0]}{p.data.year && `, ${p.data.year}`}</> : p.data.status === 'accepted' ? <>{p.data.venue}, accepted</> : p.data.status === 'in-preparation' ? 'in preparation' : 'submitted'})
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    })}
+  </section>
+
+  <section class="section" aria-labelledby="code">
+    <h2 class="section-title" id="code">Research Projects with Code</h2>
+    {codeProjects.map(({ p, Content }) => {
+      const rel = p.data.relatedPublication ? byId.get(p.data.relatedPublication) : undefined;
+      return (
+        <ResearchItem title={p.data.title} role="Open-source code" period={rel?.data.year ? `Paper published ${rel.data.year}` : undefined}>
+          <p class="condensed">{p.data.summary}</p>
+          {p.data.problem && <p class="condensed"><em>Problem:</em> {p.data.problem}</p>}
+          {p.data.methods.length > 0 && <ul>{p.data.methods.map((m) => <li>{m}</li>)}</ul>}
+          <div class="condensed muted"><Content /></div>
+          <p class="condensed tags">{p.data.tools.join(' · ')}</p>
+          <p class="condensed">
+            {p.data.repo && <a href={p.data.repo}>GitHub repository</a>}
+            {rel?.data.doi && <> · <a href={`https://doi.org/${rel.data.doi}`}>Related paper in <em>{rel.data.venue}</em></a></>}
+          </p>
+        </ResearchItem>
+      );
+    })}
+  </section>
+
+  <section class="section" aria-labelledby="academic">
+    <h2 class="section-title" id="academic">Academic and Field Projects</h2>
+    {academic.map(({ p }) => (
+      <ResearchItem title={p.data.title} role="B.URP project" period="KUET">
+        <p class="condensed">{p.data.summary}</p>
+        {p.data.methods.length > 0 && <ul>{p.data.methods.map((m) => <li>{m}</li>)}</ul>}
+        {p.data.output && <p class="condensed"><em>Key result:</em> {p.data.output}</p>}
+        <p class="condensed tags">{p.data.tools.join(' · ')}</p>
+      </ResearchItem>
+    ))}
+  </section>
+
+  <section class="section" aria-labelledby="interests">
+    <h2 class="section-title" id="interests">Research Interests</h2>
+    <ul>{researchInterests.map((r) => <li>{r}</li>)}</ul>
+  </section>
+
+  <section class="section" aria-labelledby="methods">
+    <h2 class="section-title" id="methods">Methods and Tools</h2>
+    {skills.map((s) => (
+      <div class="item-row wide">
+        <p class="condensed"><strong>{s.group}</strong>: {s.items.join(', ')}</p>
+      </div>
+    ))}
+  </section>
+
+  <section class="section" aria-labelledby="collab">
+    <h2 class="section-title" id="collab">Collaborators</h2>
+    <ul>
+      {collaborators.map((c) => <li><strong>{c.name}</strong>, <em>{c.role}</em></li>)}
+    </ul>
+  </section>
+</PageLayout>

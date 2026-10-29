@@ -42,15 +42,31 @@ const personLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
-    <meta name="theme-color" content="#1d3b6e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Barlow+Condensed:wght@300;400;500&family=Inconsolata:wght@300;400;500;700&display=swap"
+    />
+    <script is:inline>
+      // Apply the saved or system theme before first paint to avoid a flash.
+      (function () {
+        var t;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
     <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
   </head>
-  <body class="flex min-h-screen flex-col">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-20 focus:rounded focus:bg-navy focus:px-3 focus:py-1.5 focus:text-white">
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:rounded focus:bg-[var(--color-accent)] focus:px-3 focus:py-1.5 focus:text-white">
       Skip to content
     </a>
     <Header />
-    <main id="main" class="mx-auto w-full max-w-5xl flex-1 px-4 pt-8 md:px-6 md:pt-12">
+    <main id="main" class="container page">
       <slot />
     </main>
     <Footer />

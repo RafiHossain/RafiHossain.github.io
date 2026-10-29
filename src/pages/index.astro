@@ -1,98 +1,91 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProfileCard from '../components/ProfileCard.astro';
+import Icon from '../components/Icon.astro';
+import Citation from '../components/Citation.astro';
 import NewsList from '../components/NewsList.astro';
-import PublicationItem from '../components/PublicationItem.astro';
-import ProjectEntry from '../components/ProjectEntry.astro';
+import ResearchItem from '../components/ResearchItem.astro';
 import EducationList from '../components/EducationList.astro';
 import ExperienceList from '../components/ExperienceList.astro';
-import ContactLinks from '../components/ContactLinks.astro';
-import { profile, researchInterests } from '../data/profile';
-import { getProjects, getPublications } from '../lib/content';
+import { profile } from '../data/profile';
+import { ongoing } from '../data/research';
+import { getProjects, getPublications, inlineMarkdown } from '../lib/content';
+
+// Drop profile.jpg / .png / .webp into src/assets/ to use it as the portrait.
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/profile.{jpg,jpeg,png,webp}', { eager: true });
+const photo = Object.values(photos)[0]?.default;
 
 const pubs = await getPublications();
 const selected = pubs.filter((p) => p.data.selected);
-const publishedCount = pubs.filter((p) => p.data.status === 'published' && p.data.type === 'journal').length;
-const submittedCount = pubs.filter((p) => ['submitted', 'under-review'].includes(p.data.status)).length;
-const featured = (await getProjects()).filter((p) => p.data.featured);
-const experience = (await getCollection('experience')).filter((x) => x.data.category === 'research' || x.data.category === 'professional').slice(0, 3);
+const codeProjects = (await getProjects()).filter((p) => p.data.featured && p.data.repo);
+const experience = (await getCollection('experience')).filter((x) => x.data.category === 'research' || x.data.category === 'professional');
+const pubById = new Map(pubs.map((p) => [p.id, p]));
 ---
 
 <BaseLayout>
-  <div class="grid gap-10 md:grid-cols-[200px_1fr] md:gap-14">
-    <aside class="md:sticky md:top-24 md:self-start" aria-label="Profile">
-      <ProfileCard />
-    </aside>
+  <h1 class="sr-only">{profile.name}</h1>
 
-    <div class="min-w-0 space-y-12">
-      <section aria-labelledby="about">
-        <h1 id="about" class="sr-only">About {profile.name}</h1>
-        <ul class="mb-5 flex flex-wrap gap-x-2 gap-y-1 text-sm text-navy" aria-label="Research keywords">
-          {profile.keywords.map((k, i) => (
-            <li>
-              {k}
-              {i < profile.keywords.length - 1 && <span class="ml-2 text-faint" aria-hidden="true">·</span>}
-            </li>
-          ))}
-        </ul>
-        <h2 class="section-title">About Me</h2>
-        <div class="prose-academic text-[1.02rem]">
-          {profile.bio.map((p) => <p>{p}</p>)}
-        </div>
-      </section>
+  <div class="intro">
+    <div class="profile">
+      <div class="profile-img">
+        {photo ? (
+          <Image src={photo} alt={`Portrait of ${profile.name}`} widths={[200, 400]} sizes="200px" loading="eager" />
+        ) : (
+          <span class="profile-initials" aria-hidden="true">AHR</span>
+        )}
+      </div>
+      <p class="name">{profile.name}</p>
+      {profile.sidebar.map((line) => <p set:html={inlineMarkdown(line)} />)}
+      <p><Icon name="location" /> <a href={profile.locationLink}>{profile.location}</a></p>
+      <p><Icon name="email" /> <a href={`mailto:${profile.emails[0]}`}>Contact Me</a></p>
+    </div>
 
-      <section aria-labelledby="interests">
-        <h2 id="interests" class="section-title">Research Interests</h2>
-        <ul class="grid gap-x-8 gap-y-1 sm:grid-cols-2 list-disc pl-5 marker:text-navy/50">
-          {researchInterests.map((r) => <li>{r}</li>)}
-        </ul>
-        <p class="mt-3 text-sm"><a href="/research/">Research themes and thesis →</a></p>
-      </section>
-
-      <section aria-labelledby="news">
-        <h2 id="news" class="section-title">Research Updates</h2>
-        <NewsList limit={6} />
-      </section>
-
-      <section aria-labelledby="pubs">
-        <h2 id="pubs" class="section-title">Selected Publications</h2>
-        <p class="-mt-2 mb-4 text-sm text-muted">
-          {publishedCount} peer-reviewed journal articles · {submittedCount} manuscripts submitted. Full list on the
-          <a href="/publications/">publications page</a> and <a href={profile.links.googleScholar}>Google Scholar</a>.
-        </p>
-        <ol class="space-y-4">
-          {selected.map((p) => <PublicationItem pub={p} />)}
-        </ol>
-      </section>
-
-      <section aria-labelledby="projects">
-        <h2 id="projects" class="section-title">Selected Research Projects</h2>
-        <div class="space-y-6">
-          {featured.map((p) => <ProjectEntry project={p} compact />)}
-        </div>
-        <p class="mt-4 text-sm"><a href="/projects/">All projects →</a></p>
-      </section>
-
-      <section aria-labelledby="education">
-        <h2 id="education" class="section-title">Education</h2>
-        <EducationList limit={2} />
-      </section>
-
-      <section aria-labelledby="experience">
-        <h2 id="experience" class="section-title">Experience</h2>
-        <ExperienceList items={experience} showSummary={false} />
-        <p class="mt-4 text-sm"><a href="/experience/">Experience, training and leadership →</a></p>
-      </section>
-
-      <section aria-labelledby="contact">
-        <h2 id="contact" class="section-title">Contact</h2>
-        <p class="mb-3">
-          I welcome enquiries about research and collaboration. The best way to reach me is by email at
-          <a href={`mailto:${profile.emails[0]}`}>{profile.emails[0]}</a>.
-        </p>
-        <ContactLinks layout="inline" />
-      </section>
+    <div>
+      {profile.bioIntro.map((p) => <p class="condensed" set:html={inlineMarkdown(p)} />)}
+      <ul>
+        {profile.researchAreas.map((a) => <li>{a}</li>)}
+      </ul>
+      {profile.bioOutro.map((p) => <p class="condensed" set:html={inlineMarkdown(p)} />)}
     </div>
   </div>
+
+  <section class="section" aria-labelledby="news">
+    <p class="condensed news-head" id="news"><Icon name="radar" class="spin" /> <a href="/news/">News</a>:</p>
+    <NewsList limit={5} />
+  </section>
+
+  <section class="section" aria-labelledby="selected-publication">
+    <h2 class="section-title" id="selected-publication">Selected Publication</h2>
+    <p class="note">
+      * Here is a list of my recent peer-reviewed publications. Please see the <a href="/publication/">Publication Page</a> for submitted work and conference papers.<br />
+      * Full publication list and citations can be found on my <a href={profile.links.googleScholar}>Google Scholar Profile</a>.
+    </p>
+    {selected.map((p) => <div class="cell"><Citation pub={p} /></div>)}
+  </section>
+
+  <section class="section" aria-labelledby="research">
+    <h2 class="section-title" id="research">Research</h2>
+    <p class="note">* Here is a list of my current and recent research. Please see the <a href="/rnd/">R&amp;D Page</a> for all research and development projects.</p>
+    {ongoing.map((r) => <ResearchItem {...r} />)}
+    {codeProjects.map((p) => {
+      const rel = p.data.relatedPublication ? pubById.get(p.data.relatedPublication) : undefined;
+      return (
+        <ResearchItem title={p.data.title} role="Open-source code" period={rel?.data.year ? `Paper published ${rel.data.year}` : undefined}>
+          <p class="condensed">{p.data.summary} <a href={p.data.repo}>GitHub repository</a>{rel?.data.doi && <>, <a href={`https://doi.org/${rel.data.doi}`}>paper</a></>}.</p>
+        </ResearchItem>
+      );
+    })}
+  </section>
+
+  <section class="section" aria-labelledby="education">
+    <h2 class="section-title" id="education">Education</h2>
+    <EducationList details={false} />
+  </section>
+
+  <section class="section" aria-labelledby="experience">
+    <h2 class="section-title" id="experience">Professional Experience</h2>
+    <ExperienceList items={experience} showSummary={false} />
+  </section>
 </BaseLayout>

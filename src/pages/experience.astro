@@ -15,17 +15,14 @@ const groups = [
   .filter((g) => g.items.length > 0);
 ---
 
-<PageLayout
-  title="Experience"
-  description="Education, research experience, internships, training and leadership of Al Hossain Rafi."
->
-  <section aria-labelledby="education">
-    <h2 id="education" class="section-title">Education</h2>
+<PageLayout title="Experience" icon="briefcase" description="Education, research experience, internships, training and leadership of Al Hossain Rafi.">
+  <section class="section" aria-labelledby="education">
+    <h2 class="section-title" id="education">Education</h2>
     <EducationList />
   </section>
   {groups.map((g) => (
-    <section aria-labelledby={g.id}>
-      <h2 id={g.id} class="section-title">{g.title}</h2>
+    <section class="section" aria-labelledby={g.id}>
+      <h2 class="section-title" id={g.id}>{g.title}</h2>
       <ExperienceList items={g.items} />
     </section>
   ))}
