@@ -7,7 +7,8 @@ import { cvAvailable, getPublications } from '../lib/content';
 const hasCv = cvAvailable();
 const pubs = await getPublications();
 const journal = pubs.filter((p) => p.data.type === 'journal' && p.data.status === 'published').length;
-const conference = pubs.filter((p) => p.data.type === 'conference' && p.data.status === 'published').length;
+const accepted = pubs.filter((p) => p.data.status === 'accepted').length;
+const conference =pubs.filter((p) => p.data.type === 'conference' && p.data.status === 'published').length;
 ---
 
 <PageLayout title="Curriculum Vitae" description="Curriculum vitae of Al Hossain Rafi.">
@@ -30,9 +31,9 @@ const conference = pubs.filter((p) => p.data.type === 'conference' && p.data.sta
   <section aria-labelledby="summary">
     <h2 id="summary" class="section-title">At a Glance</h2>
     <ul class="list-disc space-y-1 pl-5 marker:text-navy/50">
-      <li>B.URP, Khulna University of Engineering & Technology (2020 – 2025)</li>
-      <li>{journal} peer-reviewed journal articles and {conference} conference papers — <a href="/publications/">publications</a></li>
-      <li>Research Assistant, Geospatial Matrix and Center for Environmental Research — <a href="/experience/">experience</a></li>
+      <li>B.URP, Khulna University of Engineering & Technology (2020 – 2025), CGPA 3.35 / 4.00</li>
+      <li>{journal} peer-reviewed journal articles{accepted > 0 && `, ${accepted} accepted`} and {conference} conference papers — <a href="/publications/">publications</a></li>
+      <li>Research Associate, PLANCON (2026 – present); Research Assistant, Center for Environmental Research (2023 – 2025) — <a href="/experience/">experience</a></li>
       <li>GIS intern, Khulna City Corporation (2024)</li>
       <li>Research code on <a href={profile.links.github}>GitHub</a> — <a href="/projects/">projects</a></li>
     </ul>

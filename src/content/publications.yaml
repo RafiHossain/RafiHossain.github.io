@@ -18,7 +18,16 @@
 #   selected  true to show on the home page
 # ---------------------------------------------------------------------------
 
-# ---------- Published journal articles (metadata checked against Crossref) ----------
+# ---------- Published / accepted journal articles (metadata checked against Crossref) ----------
+
+- id: wet-bulb-scirep-2026
+  title: A hybrid artificial neural network–random forest model for enhanced wet bulb temperature prediction in arid urban environments
+  authors: "Al Kafy, A.; Rafi, A. H.; Alsulamy, S.; Shohan, A. A. A.; Al Baky, A.; Bahiru, T. K."
+  year: 2026
+  venue: Scientific Reports
+  type: journal
+  status: accepted
+  selected: true
 
 - id: spring-water-potential-2026
   title: Natural spring-based water potential in Bangladesh using ensemble machine learning algorithms
@@ -113,15 +122,17 @@
   authors: "Rahman, M.; Haque, T.; Rakhi, T. J.; Rafi, A. H.; Oishi, S. I."
   year: 2024
   venue: 7th International Conference on Civil Engineering for Sustainable Development (ICCESD 2024), KUET, Khulna, Bangladesh
+  url: https://www.researchgate.net/publication/379130772
   type: conference
   status: published
   selected: false
 
 - id: iccesd-resource-management-2024
   title: Factors affecting sustainable resource management in Bangladesh
-  authors: "Rimi, R. A.; Rafi, A. H.; J. S."
+  authors: "Rimi, R. A.; Rafi, A. H.; Sultana, J."
   year: 2024
   venue: 7th International Conference on Civil Engineering for Sustainable Development (ICCESD 2024), KUET, Khulna, Bangladesh
+  url: https://www.researchgate.net/publication/379237772
   type: conference
   status: published
   selected: false
@@ -171,19 +182,29 @@
   status: submitted
 - id: sub-diabetes-xai
   title: "Advancing diabetes prediction: Explainable artificial intelligence (XAI) for enhanced clinical insights"
-  venue: IEEE (venue to be confirmed)
+  venue: IEEE Xplore
   type: conference
-  status: submitted
-- id: sub-wet-bulb
-  title: A hybrid artificial neural network–random forest model for enhanced wet bulb temperature prediction in arid urban environments
-  venue: Scientific Reports
-  type: journal
   status: submitted
 - id: sub-flood-backscatter
   title: Optimized mapping of flood dynamics using backscatter analysis and machine learning in Bangladesh
   venue: Heliyon
   type: journal
   status: submitted
+- id: sub-od-traffic-congestion
+  title: Origin-destination-based traffic congestion analysis in Bangladesh
+  venue: Transportation Journal (Wiley)
+  type: journal
+  status: submitted
+- id: prep-intersection-signalization
+  title: Optimizing intersection efficiency through strategic signalization at two substantial intersections in Bangladesh
+  venue: Manuscript
+  type: journal
+  status: in-preparation
+- id: prep-road-pollutants
+  title: Spatial distribution of pollutants and their relationships with environmental and economic factors across road sections in Bangladesh using machine learning
+  venue: Manuscript
+  type: journal
+  status: in-preparation
 
 # ---------- Thesis ----------
 

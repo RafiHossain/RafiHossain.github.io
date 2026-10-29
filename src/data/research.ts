@@ -18,7 +18,7 @@ export const themes = [
   {
     title: 'Urban growth and land transformation',
     text: 'Modeling where cities expand and how land use changes, by combining night-time lights, thermal and spectral imagery with machine learning and geostatistics.',
-    publications: ['urban-expansion-jum-2025', 'dhaka-urban-expansion-2026', 'sub-urban-functional-zones', 'sub-wet-bulb'],
+    publications: ['urban-expansion-jum-2025', 'dhaka-urban-expansion-2026', 'wet-bulb-scirep-2026', 'sub-urban-functional-zones'],
   },
   {
     title: 'Water, agriculture and ecosystems',
@@ -27,8 +27,8 @@ export const themes = [
   },
   {
     title: 'Transportation, environment and public health',
-    text: 'Field-based studies of traffic congestion and road safety, pollution impacts and public health, carried out through coursework and with the Center for Environmental Research.',
-    publications: ['sub-diabetes-xai'],
+    text: 'Field-based studies of traffic congestion, intersection performance and road-side pollution, and of public health, carried out through coursework and with the Center for Environmental Research.',
+    publications: ['sub-od-traffic-congestion', 'prep-intersection-signalization', 'prep-road-pollutants', 'sub-diabetes-xai'],
   },
 ];
 

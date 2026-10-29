@@ -10,5 +10,5 @@ methods:
   - Congestion index (CI) for origin, sub-origin and destination segments
   - Weekday and weekend comparison
 tools: [Field survey]
-output: The highest congestion index was 5.79 on weekdays and 4.78 on weekends, both around City Medical and Moylapota Mor.
+output: The highest congestion index was 5.79 on weekdays and 4.78 on weekends, both around City Medical and Moylapota Mor. A manuscript from this study has been submitted to Transportation Journal (Wiley).
 ---

@@ -37,6 +37,8 @@ const statusClass: Record<string, string> = {
     {' '}
     {data.status === 'published' || data.status === 'accepted' ? (
       <span><em>{data.venue}</em>{detail ? `, ${detail}.` : '.'}</span>
+    ) : data.status === 'in-preparation' ? (
+      <span class="text-muted">Manuscript in preparation.</span>
     ) : (
       <span class="text-muted">Submitted to <em>{data.venue}</em>.</span>
     )}

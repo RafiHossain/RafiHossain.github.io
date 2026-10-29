@@ -42,7 +42,7 @@ const byId = new Map(pubs.map((p) => [p.id, p]));
                   <li>
                     {p.data.doi ? <a href={`https://doi.org/${p.data.doi}`}>{p.data.title}</a> : <span>{p.data.title}</span>}
                     <span class="text-faint">
-                      {' '}— {p.data.status === 'published' ? <em>{p.data.venue}</em> : 'submitted'}
+                      {' '}— {p.data.status === 'published' ? <em>{p.data.venue}</em> : p.data.status === 'accepted' ? <><em>{p.data.venue}</em> (accepted)</> : p.data.status === 'in-preparation' ? 'in preparation' : 'submitted'}
                       {p.data.year && `, ${p.data.year}`}
                     </span>
                   </li>
