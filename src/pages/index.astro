@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -13,9 +13,16 @@ import { profile } from '../data/profile';
 import { ongoing } from '../data/research';
 import { getProjects, getPublications, inlineMarkdown } from '../lib/content';
 
-// Drop profile.jpg / .png / .webp into src/assets/ to use it as the portrait.
-const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/profile.{jpg,jpeg,png,webp}', { eager: true });
-const photo = Object.values(photos)[0]?.default;
+// Every image in src/assets/profile/ is a portrait; one is picked at random on each page load.
+const photoModules = import.meta.glob<{ default: ImageMetadata }>('../assets/profile/*.{jpg,jpeg,png,webp}', { eager: true });
+const photos = await Promise.all(
+  Object.keys(photoModules)
+    .sort()
+    .map(async (key) => {
+      const img = await getImage({ src: photoModules[key].default, width: 400, widths: [200, 400], format: 'webp' });
+      return { src: img.src, srcset: img.srcSet.attribute };
+    }),
+);
 
 const pubs = await getPublications();
 const selected = pubs.filter((p) => p.data.selected);
@@ -30,8 +37,25 @@ const pubById = new Map(pubs.map((p) => [p.id, p]));
   <div class="intro">
     <div class="profile">
       <div class="profile-img">
-        {photo ? (
-          <Image src={photo} alt={`Portrait of ${profile.name}`} widths={[200, 400]} sizes="200px" loading="eager" />
+        {photos.length > 0 ? (
+          <>
+            <img id="profile-photo" alt={`Portrait of ${profile.name}`} sizes="200px" width="200" height="200" decoding="async" data-photos={JSON.stringify(photos)} />
+            <script is:inline>
+              // Pick a random portrait before the image loads, avoiding a repeat of the last one shown.
+              (function () {
+                var img = document.getElementById('profile-photo');
+                var list = JSON.parse(img.getAttribute('data-photos'));
+                var last = -1;
+                try { last = parseInt(sessionStorage.getItem('profile-photo') || '-1', 10); } catch (e) {}
+                var i = Math.floor(Math.random() * list.length);
+                if (list.length > 1 && i === last) i = (i + 1 + Math.floor(Math.random() * (list.length - 1))) % list.length;
+                try { sessionStorage.setItem('profile-photo', String(i)); } catch (e) {}
+                img.srcset = list[i].srcset;
+                img.src = list[i].src;
+              })();
+            </script>
+            <noscript><img alt={`Portrait of ${profile.name}`} src={photos[0].src} srcset={photos[0].srcset} sizes="200px" width="200" height="200" /></noscript>
+          </>
         ) : (
           <span class="profile-initials" aria-hidden="true">AHR</span>
         )}

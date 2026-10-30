@@ -352,6 +352,10 @@ p.condensed {
   object-fit: cover;
   display: block;
 }
+/* The random-photo <img> has no src until its script runs; hide it without JavaScript. */
+.profile-img img:not([src]) {
+  display: none;
+}
 .profile-img::after {
   content: '';
   position: absolute;

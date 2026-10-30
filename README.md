@@ -21,7 +21,7 @@ All content lives in plain text files. You never need to touch the page layouts 
 | Projects (one file per project) | `src/content/projects/*.md` |
 | Education | `src/content/education.yaml` |
 | Experience, training, leadership | `src/content/experience.yaml` |
-| Profile photo | `src/assets/profile.jpg` |
+| Profile photos (one shown at random per visit) | `src/assets/profile/` |
 | CV (PDF, optional) | `public/cv/Al_Hossain_Rafi_CV.pdf` |
 
 You can edit any of these directly on GitHub: open the file, click the pencil icon, and commit. The site rebuilds in about a minute.
@@ -87,9 +87,9 @@ output: Key result in one sentence.                # optional
 Optional longer description in Markdown.
 ```
 
-### Update the photo
+### Profile photos (random on each visit)
 
-Save a square-ish portrait as `src/assets/profile.jpg` (or `.png` / `.webp`). It is resized and optimized automatically. Without a photo, the site shows your initials.
+Every image in `src/assets/profile/` is used as a portrait. Each time the home page loads, one is picked at random, never the same one twice in a row. To add a photo, drop a square image (`.jpg`, `.png` or `.webp`, ideally 800×800 with your face in the upper middle) into that folder. To remove one, delete its file. Photos are resized and converted to small WebP files automatically. With the folder empty, the site shows your initials.
 
 ### Upload a CV (optional)
 
@@ -129,7 +129,7 @@ src/
   content/          publications, news, projects, education, experience (edit these)
   content.config.ts schema that validates the content files
   data/             profile.ts and research.ts (edit these)
-  assets/           profile photo
+  assets/profile/   profile photos (rotated at random)
   components/       header, footer, citation, news list, research item, icons, logo
   layouts/          page shells
   pages/            one file per page: index, news, publication, rnd, experience, contact
